@@ -1,0 +1,40 @@
+Check the Dockerfile
+
+docker build -t myanakiev/sb-demo:v1 .
+docker run -p 8080:8080 myanakiev/sb-demo:v1
+
+docker tag myanakiev/sb-demo:v1 myanakiev/sb-demo:v1
+docker push myanakiev/sb-demo:v1
+
+
+docker build -t myanakiev/sb-demo:v2 .
+docker run -p 8080:8080 myanakiev/sb-demo:v2
+
+docker tag myanakiev/sb-demo:v2 myanakiev/sb-demo:v2
+docker push myanakiev/sb-demo:v2
+
+
+kubectl apply -f k-dep-v1.yml
+kubectl apply -f k-dep-v2.yml --record
+
+kubectl rollout undo deployment ics-demo --to-revision=1
+
+
+---
+
+
+myanakiev/spring-boot-demo
+
+docker build -t myanakiev/spring-boot-demo .
+docker run -p 8080:8080 myanakiev/spring-boot-demo
+
+docker push myanakiev/spring-boot-demo
+
+
+docker push new-repo:tagname
+
+
+docker push myanakiev/spring-boot-demo
+
+https://www.talkingdotnet.com/how-to-run-locally-build-docker-images-with-kubernetes/
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
