@@ -7,11 +7,13 @@ docker tag myanakiev/sb-demo:v1 myanakiev/sb-demo:v1
 docker push myanakiev/sb-demo:v1
 
 
+
 docker build -t myanakiev/sb-demo:v2 .
 docker run -p 8080:8080 myanakiev/sb-demo:v2
 
 docker tag myanakiev/sb-demo:v2 myanakiev/sb-demo:v2
 docker push myanakiev/sb-demo:v2
+
 
 
 kubectl apply -f k-dep-v1.yml
@@ -22,11 +24,11 @@ kubectl rollout undo deployment ics-demo --to-revision=1
 
 ---
 
+
 Maven notes:
 
 build with Maven -> 
 mvn spring-boot:build-image -Dspring-boot.build-image.imageName=springio/spring-boot-complete
-
 
 run Maven's build ->
 docker run -p 8080:8080 -t springio/spring-boot-complete
@@ -34,7 +36,6 @@ docker run -p 8080:8080 -t springio/spring-boot-complete
 run with Maven's profile ->
 docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 -t springio/gs-spring-boot-docker
 docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t springio/spring-boot-complete
-
 
 You have created a Docker container for a Spring Boot application! By default, Spring Boot applications run on port 8080 inside the container, and we mapped that to the same port on the host by using -p on the command line.
 
@@ -49,9 +50,7 @@ docker run -p 8080:8080 myanakiev/spring-boot-demo
 
 docker push myanakiev/spring-boot-demo
 
-
 docker push new-repo:tagname
-
 
 docker push myanakiev/spring-boot-demo
 
